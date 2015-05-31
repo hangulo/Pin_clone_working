@@ -3,11 +3,12 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Pin Clone </title>
+    <link rel="stylesheet" href="css/styles.css"
 </head>
 <body ng-app="app" ng-controller="AppCtrl as app">
-Uploaded on github
 <button ng-click="app.addPin()">Add Pin</button>
-<div ng-repeat="pin in app.pins">
+<br>
+<div class="pin" ng-repeat="pin in app.pins">
     <img ng-src="{{pin.image }}" alt=""/>
     <div class="ui">
         <input type="text" ng-model="pin.title"/>

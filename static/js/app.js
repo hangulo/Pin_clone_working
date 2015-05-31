@@ -22,5 +22,9 @@ app.controller("AppCtrl", function($http) {
         })
     };
 
+    app.updatePin = function(pin){
+        $http.put("/api/pin/"+ pin.id,pin);
+
+    }
 
 });
