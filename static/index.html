@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="blog" ng-controller="blogCtrl as app">
+<html ng-app="blog">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Routing</title>
@@ -15,15 +15,14 @@
         </nav>
     </header>
 
-    <div ng-view>
-        <!-- Ajaxed content here -->
+    <div ng-view ng-controller="HomeController">
     </div>
 
 </div>
 
 
 <script src="bower_components/angular/angular.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-route.min.js"></script>
+<script src="bower_components/angular/angular-route.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
