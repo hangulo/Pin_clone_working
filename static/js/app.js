@@ -16,6 +16,13 @@ app.controller("AppCtrl", function($http) {
             })
     };
 
+    app.addPinRandom= function () {
+        $http.post("api/pin", {"title":"new", "image":"http://randomimage.setgetgo.com/get.php"})
+            .success(function(data){
+                app.pins.push(data);
+            })
+    };
+
     app.deletePin = function(pin) {
         $http.delete("/api/pin/"+ pin.id).success(function(response){
             app.pins.splice(app.pins.indexOf(pin), 1);
