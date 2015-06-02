@@ -5,16 +5,18 @@ app.config(function($routeProvider) {
         $routeProvider
             .when('/',
             {
-                templateUrl: 'Partials/index.html'
-                //controller: 'HomeController' //Why doesnt like this? have to put in html?!
+                templateUrl: 'Partials/index.html', //Dont forget this comma... duh!
+                controller: 'HomeController'
             })
             .when('/about',
             {
-                templateUrl: 'Partials/about.html'
+                templateUrl: 'Partials/about.html',
+                controller: 'HomeController'
             })
             .when('/pin',
             {
-                templateUrl: 'Partials/pin.html'
+                templateUrl: 'Partials/pin.html',
+                controller: 'AppCtrl'
             })
             .otherwise(
             {
