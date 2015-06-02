@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="css/styles.css">
+<div ng-controller="AppCtrl as app">
+    <button ng-click="app.addPin()">Add Cat Pic</button>
+    <button ng-click="app.addPinRandom()">Add Random Pic</button>
+    <br><br><br>
+
+    <b>Filter by</b><br>
+    <label>Any: <input ng-model="search.$"></label> <br>
+    <label>title only <input ng-model="search.title"></label><br>
+    <label>Image URL only <input ng-model="search.image"></label><br>
+
+    <br /><br />
+    <div class="pin" ng-repeat="pin in app.pins | filter:search">
+        <img ng-src="{{pin.image }}" alt=""/>
+        <div class="ui">
+            <input type="text" ng-model="pin.title"/>
+            <button ng-click="app.updatePin(pin)">Update</button>
+            <button ng-click="app.deletePin(pin)">Delete</button>
+
+        </div>
+
+</div>
+</div>
