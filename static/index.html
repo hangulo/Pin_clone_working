@@ -3,25 +3,30 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Routing</title>
-
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Hector's Blog</h1>
-        <nav>
-            <a href="#/">Home</a>
-            <a href="#/about">About</a>
-            <a href="#/pin">Pins-Embedded</a>
-            <a href="pin.html">Pins-Separate</a>
-        </nav>
-    </header>
-
-    <div ng-view>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Angular Test Site</h1>
+        <p>Hector's playground for learning/testing Angular </p>
+        <a class="btn btn-primary btn-sm" href="#/" role="button">Home</a>
+        <a class="btn btn-primary btn-sm" href="#/about" role="button">About</a>
+        <a class="btn btn-primary btn-sm" href="#/pin" role="button">Pins-Embedded</a>
+        <a class="btn btn-primary btn-sm" href="/pin.html" role="button">Pins-External</a>
+        <a class="btn btn-primary btn-sm" href="/boot.html" role="button">Boot-External</a>
+      </div>
     </div>
 
-</div>
+    <div class="container">
+
+        <div ng-view>
+            <!-- ajaxed content here -->
+        </div>
+
+    </div>
 
 
 <script src="bower_components/angular/angular.js"></script>

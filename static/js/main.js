@@ -11,7 +11,7 @@ app.config(function($routeProvider) {
             .when('/about',
             {
                 templateUrl: 'Partials/about.html',
-                controller: 'HomeController'
+                controller: 'AboutController'
             })
             .when('/pin',
             {
@@ -28,10 +28,17 @@ app.config(function($routeProvider) {
 
 app.controller('HomeController', function($scope){
     $scope.blogposts = [
-        'Blog post 1',
-        'Blog post 2',
-        'Blog post 3'
+        'Item #1',
+        'Item #2',
+        'Item #3',
     ]
+});
+
+app.controller('AboutController', function($scope){
+    $scope.name = "Hector Angulo"
+    $scope.bio = "I am Head of Product and I love working with Angular.js!"
+
+    console.log($scope);
 });
 
 app.controller("AppCtrl", function($http) {
