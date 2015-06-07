@@ -18,6 +18,11 @@ app.config(function($routeProvider) {
                 templateUrl: 'Partials/pin.html',
                 controller: 'AppCtrl'
             })
+            .when('/search',
+            {
+                templateUrl: 'Partials/search.html',
+                controller: 'SearchController'
+            })
             .otherwise(
             {
                 redirectTo: '/'
@@ -28,6 +33,14 @@ app.config(function($routeProvider) {
 
 app.controller('HomeController', function($scope){
     $scope.blogposts = [
+        'Item #1',
+        'Item #2',
+        'Item #3',
+    ]
+});
+
+app.controller('SearchController', function($scope){
+    $scope.searchresults = [
         'Item #1',
         'Item #2',
         'Item #3',
