@@ -1,4 +1,4 @@
-var app = angular.module('blog',['ngRoute','ngPrettyJson']);
+var app = angular.module('blog',['ngRoute']);
 
 
 app.config(function($routeProvider) {
