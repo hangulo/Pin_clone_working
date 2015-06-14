@@ -53,16 +53,25 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="search#/table">Dashboard <span class="sr-only">(current)</span></a></li>
-            <li><a href="search#/facets">Facets</a></li>
-            <li><a href="search#/full">Full Event</a></li>
-            <li><a href="#">Other</a></li>
+
+
+          <b>Search For</b><br>
+            <label>Query <input ng-model="query"></label> <br>
+            <label>Size <input ng-model="size"></label><br>
+            <button ng-click="search()">Search</button>
+
+
+
+            <li ng-class="getClass('/')"><a href="search#/">Dashboard<span class="sr-only">(current)</span></a></li>
+            <li ng-class="getClass('/table')"><a href="search#/table">Event Table Only</a></li>
+            <li ng-class="getClass('/facets')"><a href="search#/facets">Facets Only</a></li>
+            <li ng-class="getClass('/full')"><a href="search#/full">Full Event</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
+          <h1 class="page-header" ng-show="isPath('/')">Dashboard for Query: {{ query }}</h1>
 
-          <div class="row placeholders" ng-show="currentPath === '/'" ng-hide="currentPath !== '/'">
+          <div class="row placeholders" ng-show="isPath('/')">
             <div class="col-xs-6 col-sm-3 placeholder">
               <a href="search#/table"><img data-src="holder.js/200x200?text={{ events_num }}&theme=vine&size=50"></a>
               <h4>Events Returned</h4>

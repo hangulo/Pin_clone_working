@@ -18,7 +18,7 @@ app.config(function($routeProvider) {
                 templateUrl: 'Partials/search/table.html',
                 controller: 'SearchController'
             })
-            .when('/table.html',
+            .when('/table',
             {
                 templateUrl: 'Partials/search/table.html',
                 controller: 'SearchController'
@@ -38,12 +38,46 @@ app.controller('SearchController', function($scope, $http, $location){
         'Item #2',
         'Item #3',
     ];
-    $http.defaults.headers.common['Authorization'] = 'Basic ' + "aGVjdG9yOmhlY3Rvcg==";
-    $http.get("https://sample.loggly.com/apiv2/events?rsid=1648234180").success(function(data)
+
+    $scope.size = "1"
+    $scope.query = "*"
+
+    $scope.search= function () {
+        console.log("You Searched!");
+
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + "aGVjdG9yOmhlY3Rvcg==";
+        $http.get("https://sample.loggly.com/apiv2/search?q=*&from=-10m&until=now&order=asc&size="+$scope.size).success(function(data)
     {
+        $scope.rsid=data['rsid']['id'];
+    }).success(function(data){
+         console.log($scope.rsid)
+
+
+        $http.get("https://sample.loggly.com/apiv2/events?rsid="+$scope.rsid).success(function(data)
+        {
+        console.log(data)
         $scope.results = data.events;
 
-    });
+        })
+        })
+    };
+
+    $scope.isPath = function(path) {
+    if ($location.path() === path) {
+        return true;
+    } else {
+        return false;
+    }
+    };
+
+    $scope.getClass = function(path) {
+    if ($location.path() === path) {
+        return "active";
+    } else {
+        return "";
+    }
+    };
+
 
     $scope.currentPath = $location.path();
     $scope.name = "Hector";
@@ -52,7 +86,7 @@ app.controller('SearchController', function($scope, $http, $location){
     $scope.facets_num = "0";
     $scope.events_MB = "0";
     $scope.facets = ["a","b","c","d","e","f","g","h"];
-    console.log($scope); //2
+    console.log($scope);
 
 
 });
