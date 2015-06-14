@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Lets do crazier things here</title>
+    <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
@@ -24,8 +24,10 @@
     <![endif]-->
   </head>
 
-  <body ng-app="search" ng-controller="SearchController">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+
+<body ng-app="search" ng-controller="SearchController">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -48,7 +50,7 @@
           </form>
         </div>
       </div>
-    </nav>
+  </nav>
 
     <div class="container-fluid">
       <div class="row">
@@ -61,36 +63,96 @@
           To <input  value="{{ to }}" size="11"> <br>
           Angular <input ng-model="name" size="11"> <br>
 
+        {% block content %}
           <br><b>Change View Here</b>
           <ul class="nav nav-sidebar">
-            <li ><a href="/search2">Main Dashboard <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="/search3">Full Events</a></li>
+            <li class="active"><a href="/search2#">Main Dashboard <span class="sr-only">(current)</span></a></li>
+            <li><a href="/search3">Full Events</a></li>
             <li><a href="#">View3</a></li>
 
           </ul>
         </div>
+
+
+
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
+          <h1 class="page-header">{{ default }}'s Dashboard</h1>
 
-
+          <!-- Circles at the Top -->
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200?text={{ size }}&theme=vine&size=50">
+              <h4>Events Returned</h4>
+              <span class="text-muted">How many you asked for</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200?theme=sky&text={{ events_num }}&size=50" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Total Events</h4>
+              <span class="text-muted">Total during this period</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200?text={{ facets_num }}&theme=social&size=50" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Unique Fields</h4>
+              <span class="text-muted">Total # fields in results</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200?text={{ events_MB }}MB&theme=industrial&size=50" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Events Size</h4>
+              <span class="text-muted">Payload size of all {{ events_num }} events</span>
+            </div>
+          </div>
 
     <div>
         <h2 class="sub-header">Search Results Table</h2>
 
             <div class="container">
 
-
-
-        <h2 class="sub-header">Events_TXT from Jinja</h2>
-            <pre>{{ events_TXT }} </pre>
-
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Tags</th>
+                  <th>LogTypes</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody>
+            {% for item in results_JSON.events %}
+                <tr>
+                  <td>{{ item.timestamp }}</td>
+                  <td>
+                    {% for tag in item.tags|sort %}
+                        {{ tag }}
+                    {% endfor %}
+                  </td>
+                  <td>
+                    {% for logtype in item.logtypes|sort %}
+                        {{ logtype }}
+                    {% endfor %}
+                  </td>
+                  <td>{{ item.logmsg | capitalize}}</td>
+                </tr>
+            {% endfor %}
+              </tbody>
+            </table>
+          </div>
+    <div>
+        <h2 class="sub-header">List of Facets</h2>
+        {%  for field in facets_JSON.fields|sort %}
+           <li class="list-group-item col-md-3">{{ field.name }}</li>
+        {% endfor %}
+</div>
 
         </div>
 
         </div>
 
       </div>
+      {% endblock %}
     </div>
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -103,5 +165,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>
     <script src="/js/search.js"></script>
   <script type="text/javascript" src="/bower_components/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
-  </body>
+
+
+</body>
+
 </html>
