@@ -14,7 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-
+      <link rel="stylesheet" type="text/css" href="/bower_components/ng-prettyjson/dist/ng-prettyjson.min.css">
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
 
@@ -56,12 +56,12 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <b>Searching For:</b><br>
-            <li ng-repeat="r in searchresults">{{ r | angular }}</li>
-          <br>Query <input ng-model="search.$" value="{{ 1 }}" size="11"> <br>
-          Query <input ng-model="search.$" value="{{ 1 }}" size="11"> <br>
-          Query <input ng-model="search.$" value="{{ 1 }}" size="11"> <br>
-          Query <input ng-model="search.$" value="{{ 1 }}" size="11"> <br>
-          Query <input ng-model="search.$" value="{{ 1 }}" size="11"> <br>
+          <br>Query <input value="{{ query }}" size="11"> <br>
+          Size <input  value="{{ size }}" size="11"> <br>
+          Sub <input  value="{{ sub }}" size="11"> <br>
+          From <input  value="{{ searchFrom }}" size="11"> <br>
+          To <input  value="{{ to }}" size="11"> <br>
+          Angular <input ng-model="name" size="11"> <br>
 
           <br><b>Change View Here</b>
           <ul class="nav nav-sidebar">
@@ -72,18 +72,18 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
+          <h1 class="page-header">{{ default }}'s Dashboard</h1>
 
           <!-- Circles at the Top -->
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200?text={{ a }}&theme=vine&size=50">
-              <h4># Returned</h4>
+              <img data-src="holder.js/200x200?text={{ size }}&theme=vine&size=50">
+              <h4>Events Returned</h4>
               <span class="text-muted">How many you asked for</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200?theme=sky&text=Yo&size=25" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4># Total</h4>
+              <img data-src="holder.js/200x200?theme=sky&text={{ events_num }}&size=25" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Total Events</h4>
               <span class="text-muted">Total during this period</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
@@ -98,74 +98,57 @@
             </div>
           </div>
 
+         <!-- Angular Example Output-->
+            <script type="text/javascript">
+                window.data= {a:1, b:2};
+            </script>
 
-          <!-- Table/Grid -->
+    <div ng-init="init('data')">
+        <h2 class="sub-header">Search Results Table</h2>
 
-          <h2 class="sub-header">Section title</h2>
+<!--
+            <br>Hello {{name|angular}}!
+            <pre pretty-json="json"  />
+                <br>
+                <li ng-repeat="r in searchresults">{{ r | angular }}</li>
+            </div>
+
+
+        <h2 class="sub-header">Sample JSON from Jinja</h2>
+            {{ sample_TXT }} <br>
+            {{ sample_JSON }}
+-->
+    <div class="container">
+
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>Timestamp</th>
+                  <th>Tags</th>
+                  <th>LogTypes</th>
+                  <th>Message</th>
                 </tr>
               </thead>
               <tbody>
+            {% for item in results_JSON.events %}
                 <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
+                  <td>{{ item.timestamp }}</td>
+                  <td>{{ item.tags }}</td>
+                  <td>{{ item.logtypes }}</td>
+                  <td>{{ item.logmsg }}</td>
                 </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
+            {% endfor %}
               </tbody>
             </table>
           </div>
+
+            <!-- events_TXT Results from Jinja-->
+        <h2 class="sub-header">Events_TXT from Jinja</h2>
+            <pre>{{ events_TXT }} </pre>
+
+
+
         </div>
       </div>
     </div>
@@ -177,8 +160,9 @@
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="/bower_components/holderjs/holder.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular/angular-route.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>
+    <script src="/js/main.js"></script>
+  <script type="text/javascript" src="/bower_components/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
   </body>
 </html>

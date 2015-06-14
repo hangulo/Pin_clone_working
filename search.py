@@ -25,6 +25,7 @@ def getSearchResults(rsid, accountFqdn,user, password):
     r = requests.get(search_url, auth=(str(user), str(password)))
 
     print "#######  " + search_url
+    #print r.json()
     return r.json()
     #return json.dumps(r.json(), sort_keys=True,indent=4, separators=(',', ': '))
 
