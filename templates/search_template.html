@@ -82,19 +82,19 @@
               <span class="text-muted">How many you asked for</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200?theme=sky&text={{ events_num }}&size=25" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img data-src="holder.js/200x200?theme=sky&text={{ events_num }}&size=50" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Total Events</h4>
               <span class="text-muted">Total during this period</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200?text=Hello&theme=social" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <img data-src="holder.js/200x200?text={{ facets_num }}&theme=social&size=50" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Unique Fields</h4>
+              <span class="text-muted">Total # fields in results</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200?text=Hello&theme=industrial" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <img data-src="holder.js/200x200?text={{ events_MB }}MB&theme=industrial&size=50" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Events Size</h4>
+              <span class="text-muted">Payload size of all {{ events_num }} events</span>
             </div>
           </div>
 
@@ -134,16 +134,31 @@
             {% for item in results_JSON.events %}
                 <tr>
                   <td>{{ item.timestamp }}</td>
-                  <td>{{ item.tags }}</td>
-                  <td>{{ item.logtypes }}</td>
-                  <td>{{ item.logmsg }}</td>
+                  <td>
+                    {% for tag in item.tags|sort %}
+                        {{ tag }}
+                    {% endfor %}
+                  </td>
+                  <td>
+                    {% for logtype in item.logtypes|sort %}
+                        {{ logtype }}
+                    {% endfor %}
+                  </td>
+                  <td>{{ item.logmsg | capitalize}}</td>
                 </tr>
             {% endfor %}
               </tbody>
             </table>
           </div>
+    <div>
+        <h2 class="sub-header">List of Facets</h2>
+        {%  for field in facets_JSON.fields|sort %}
+           <li class="list-group-item col-md-3">{{ field.name }}</li>
+        {% endfor %}
+</div>
 
-            <!-- events_TXT Results from Jinja-->
+       <hr>
+            <h2 class="sub-header">....  </h2>
         <h2 class="sub-header">Events_TXT from Jinja</h2>
             <pre>{{ events_TXT }} </pre>
 

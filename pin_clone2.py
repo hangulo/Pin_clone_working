@@ -4,7 +4,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import Text, Integer, Column
 from search import initiateSearch, getSearchResults, getFields
 from flask.ext.triangle import Triangle
-import json
+import json, sys
 
 app = Flask(__name__, static_url_path='')
 Triangle(app)
@@ -40,7 +40,7 @@ def search2b(default=''):
     searchFrom="-10m"
     searchTo="now"
     query="*"
-    size="3"
+    size="2"
     user="hector"
     password="hector"
 
@@ -51,16 +51,22 @@ def search2b(default=''):
     events_JSON = results_JSON["events"]
     events_TXT= json.dumps(events_JSON, sort_keys=True,indent=4, separators=(',', ': '))
     facets_TXT= json.dumps(facets_JSON, sort_keys=True,indent=4, separators=(',', ': '))
+    results_TXT= json.dumps(results_JSON, sort_keys=True,indent=4, separators=(',', ': '))
+    facets_num = len(facets_JSON['fields'])
     events_num =  str(results_JSON["total_events"])
     sample_JSON = json.loads("{\"a\":7,\"abra\":\"hello\",\"cadabra\":28}")
     sample_TXT = json.dumps(sample_JSON, sort_keys=True,indent=4, separators=(',', ': '))
+    events_MB = sys.getsizeof(events_TXT)/1024
+
+    print sys.getsizeof(events_TXT)
+
 
 
     return render_template('search_template.html',sub=subdomain,query=query,size=size,searchFrom=searchFrom,
                              to=searchTo, results_JSON=results_JSON, facets_JSON=facets_JSON,
                            events_TXT=events_TXT,facets_TXT=facets_TXT,events_num=events_num,
                            events_JSON=events_JSON, default=default, sample_JSON=sample_JSON,
-                           sample_TXT=sample_TXT)
+                           sample_TXT=sample_TXT, facets_num=facets_num, events_MB=events_MB)
 
 app.debug = True
 
