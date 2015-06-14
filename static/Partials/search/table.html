@@ -1,0 +1,24 @@
+<div>
+    <h2 class="sub-header">Table of Events Returned</h2>
+    <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Tags</th>
+          <th>LogTypes</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="r in results">
+        <tr>
+          <td>{{ r.timestamp}}</td>
+          <td><pre ng-repeat="tag in r.tags">{{ tag}}</pre></td>
+          <td><pre ng-repeat="logtype in r.logtypes">{{ logtype}}</pre></td>
+          <td>{{ r.logmsg}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+</div>

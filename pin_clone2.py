@@ -30,7 +30,7 @@ def index():
 
 @app.route('/search')
 def search():
-    return app.send_static_file("search.html")\
+    return app.send_static_file("search_angular.html")\
 
 @app.route('/search2')
 @app.route('/search2/<default>')

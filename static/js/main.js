@@ -20,7 +20,7 @@ app.config(function($routeProvider) {
             })
             .when('/search',
             {
-                templateUrl: 'Partials/search.html',
+                templateUrl: 'Partials/search_angular.html',
                 controller: 'SearchController'
             })
             .otherwise(
