@@ -12,7 +12,7 @@
       </thead>
       <tbody ng-repeat="r in results">
         <tr>
-          <td>{{ r.timestamp}}</td>
+          <td>{{ r.timestamp | date:'medium'}}</td>
           <td><pre ng-repeat="tag in r.tags">{{ tag}}</pre></td>
           <td><pre ng-repeat="logtype in r.logtypes">{{ logtype}}</pre></td>
           <td>{{ r.logmsg}}</td>

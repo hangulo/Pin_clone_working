@@ -39,7 +39,7 @@ app.controller('SearchController', function($scope, $http, $location){
         'Item #3',
     ];
 
-    $scope.size = "1"
+    $scope.size = "10"
     $scope.query = "*"
 
     $scope.search= function () {
@@ -88,6 +88,5 @@ app.controller('SearchController', function($scope, $http, $location){
     $scope.events_MB = "0";
     $scope.facets = ["a","b","c","d","e","f","g","h"];
     console.log($scope);
-
 
 });
