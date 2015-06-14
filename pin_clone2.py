@@ -3,8 +3,10 @@ from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import Text, Integer, Column
 from search import initiateSearch, getSearchResults
+from flask.ext.triangle import Triangle
 
 app = Flask(__name__, static_url_path='')
+Triangle(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pin.db'
 db = SQLAlchemy(app)
 

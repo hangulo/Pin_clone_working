@@ -53,10 +53,6 @@ app.controller('SearchController', function($scope, $http){
         'Item #3',
     ]
 
-    $http.get("https://sample.loggly.com/apiv2/events?rsid=210844798").success(function(data){
-
-        $scope.searchResultJSON = data.objects;
-    });
 });
 
 app.controller("AppCtrl", function($http) {
