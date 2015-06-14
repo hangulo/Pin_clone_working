@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask,render_template, request
 from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import Text, Integer, Column
+from search import initiateSearch, getSearchResults
 
 app = Flask(__name__, static_url_path='')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pin.db'
@@ -24,6 +25,23 @@ api_manager.create_api(Pin, methods=['GET', 'POST', 'DELETE', 'PUT'])
 def index():
     return app.send_static_file("index.html")
 
+@app.route('/search')
+def search():
+    return app.send_static_file("search.html")
+
+@app.route('/search2')
+def search2():
+    ## Begin the Search Query
+    subdomain="sample.loggly.com"
+    searchFrom="-10m"
+    searchTo="now"
+    query="*"
+    size="1"
+    user="hector"
+    password="hector"
+    rsid= initiateSearch(subdomain,searchFrom,searchTo,query,size,user,password)
+    results_JSON= getSearchResults(rsid, subdomain, user,password)
+    return render_template('search_template.html',a=1, b=results_JSON)
 
 app.debug = True
 

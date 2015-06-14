@@ -39,19 +39,24 @@ app.controller('HomeController', function($scope){
     ]
 });
 
-app.controller('SearchController', function($scope){
-    $scope.searchresults = [
-        'Item #1',
-        'Item #2',
-        'Item #3',
-    ]
-});
-
 app.controller('AboutController', function($scope){
     $scope.name = "Hector Angulo"
     $scope.bio = "I am Head of Product and I love working with Angular.js!"
 
     console.log($scope);
+});
+
+app.controller('SearchController', function($scope, $http){
+    $scope.searchresults = [
+        'Item #1',
+        'Item #2',
+        'Item #3',
+    ]
+
+    $http.get("https://sample.loggly.com/apiv2/events?rsid=210844798").success(function(data){
+
+        $scope.searchResultJSON = data.objects;
+    });
 });
 
 app.controller("AppCtrl", function($http) {

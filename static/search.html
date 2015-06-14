@@ -2,11 +2,10 @@
 <html ng-app="blog">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Routing</title>
-    <!-- Bootstrap core CSS -->
+    <title>Search Page</title>
     <link href="css/bootstrap.css" rel="stylesheet">
 </head>
-<body>
+<body ng-controller="SearchController">
      <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
@@ -20,23 +19,28 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
+              <li><a href="/">Home</a></li>
               <li><a href="#/about">About</a></li>
               <li><a href="#/pin">Pins</a></li>
-              <li><a href="/search2">Search2</a></li>
+              <li class="active"><a href="/search">Search</a></li>
 
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </nav>
 
-    <div class="container">
+"Hello there.. I'm a static HTML Page"
 
-        <div ng-view>
-            <!-- ajaxed content here -->
-        </div>
+<div>
+    <p> Search Results Here</p>
+    <ui>
+        <li ng-repeat="r in searchresults">{{ r }}</li>
+    </ui>
 
-    </div>
+
+    <h2>{{  searchResultsJSON }}</h2>
+</div>
+
 
 
 <script src="bower_components/angular/angular.js"></script>
