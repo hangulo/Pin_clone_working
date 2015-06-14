@@ -1,0 +1,15 @@
+
+<div>
+<div>
+        <h2 class="sub-header">List of Facets</h2>
+        {%  for field in facets_JSON.fields|sort %}
+           <li class="list-group-item col-md-3">{{ field.name }}</li>
+        {% endfor %}
+</div>
+
+       <hr>
+            <h2 class="sub-header">....  </h2>
+        <h2 class="sub-header">Events_TXT from Jinja</h2>
+            <pre>{{ events_TXT }} </pre>
+
+</div>
