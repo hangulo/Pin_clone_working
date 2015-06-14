@@ -46,7 +46,8 @@ app.controller('SearchController', function($scope, $http, $location){
         console.log("You Searched!");
 
         $http.defaults.headers.common['Authorization'] = 'Basic ' + "aGVjdG9yOmhlY3Rvcg==";
-        $http.get("https://sample.loggly.com/apiv2/search?q=*&from=-10m&until=now&order=asc&size="+$scope.size).success(function(data)
+        $http.get("https://sample.loggly.com/apiv2/search?q="+$scope.query+
+            "&from=-10m&until=now&order=asc&size="+$scope.size).success(function(data)
     {
         $scope.rsid=data['rsid']['id'];
     }).success(function(data){

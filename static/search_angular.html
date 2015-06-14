@@ -72,10 +72,11 @@
           <h1 class="page-header" ng-show="isPath('/')">Dashboard for Query: {{ query }}</h1>
 
           <div class="row placeholders" ng-show="isPath('/')">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <a href="search#/table"><img data-src="holder.js/200x200?text={{ events_num }}&theme=vine&size=50"></a>
+
+            <div class="col-xs-6 col-sm-3 dashboard-img">
+              <a href="search#/"><div class="dashboard-count">{{ size }}</div></a>
               <h4>Events Returned</h4>
-              <span class="text-muted">How many you asked for</span>
+              <span class="text-muted">You asked for {{ size }} events</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
               <a href="search#/facets"><img data-src="holder.js/200x200?text={{ facets_num }}&theme=social&size=50" class="img-responsive" alt="Generic placeholder thumbnail"></a>

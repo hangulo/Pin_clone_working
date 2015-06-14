@@ -103,3 +103,19 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.dashboard-count {
+    background-color: #ECBD45;
+    width: 200px;
+    height: 200px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 100px;
+    font-size: 50px;
+    color: white;
+}
+
+.dashboard-img{
+  padding-left:50px;
+}
