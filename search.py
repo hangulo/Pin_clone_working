@@ -33,6 +33,7 @@ def getFields(accountFqdn, searchFrom, searchTo, query,user,password):
     search_url = ("https://" + accountFqdn + "/apiv2/fields?q=" + query + "&from=" +
                   str(searchFrom) + "&until=" + str(searchTo) + "&facet_size=2000")
 
+    print "### Facet Search ####  " + search_url
     r = requests.get(search_url, auth=(str(user), str(password)))
     return r.json()
 

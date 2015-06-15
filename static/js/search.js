@@ -39,27 +39,30 @@ app.controller('SearchController', function($scope, $http, $location){
         'Item #3',
     ];
 
-    $scope.size = "10"
-    $scope.query = "*"
+    $scope.size = "10";
+    $scope.query = "*";
 
     $scope.search= function () {
-        console.log("You Searched!");
-
         $http.defaults.headers.common['Authorization'] = 'Basic ' + "aGVjdG9yOmhlY3Rvcg==";
-        $http.get("https://sample.loggly.com/apiv2/search?q="+$scope.query+
-            "&from=-10m&until=now&order=asc&size="+$scope.size).success(function(data)
-    {
-        $scope.rsid=data['rsid']['id'];
-    }).success(function(data){
-         console.log($scope.rsid)
+        $http.get("https://sample.loggly.com/apiv2/search?q=" + $scope.query +
+            "&from=-10m&until=now&order=asc&size=" + $scope.size).success(function (data) {
+            $scope.rsid = data['rsid']['id'];
+        }).success(function (data) {
+            $http.get("https://sample.loggly.com/apiv2/events?rsid=" + $scope.rsid).success(function (data) {
+                $scope.results = data.events;
 
+            })
+        }).success(function (data) {
 
-        $http.get("https://sample.loggly.com/apiv2/events?rsid="+$scope.rsid).success(function(data)
-        {
-        console.log(data)
-        $scope.results = data.events;
+            $http.get("https://sample.loggly.com/apiv2/fields?q=*&from=-10m&until=now&facet_size=2000")
+                .success(function (data)
+            {
 
-        })
+                $scope.facets = data.fields;
+                console.log("--- Printing out Facets---");
+                console.log(data);
+            })
+
         })
     };
 
@@ -83,10 +86,9 @@ app.controller('SearchController', function($scope, $http, $location){
     $scope.currentPath = $location.path();
     $scope.name = "Hector";
     $scope.total = "0";
-    $scope.events_num = "0"
+    $scope.events_num = "0";
     $scope.facets_num = "0";
     $scope.events_MB = "0";
-    $scope.facets = ["a","b","c","d","e","f","g","h"];
     console.log($scope);
 
 });
