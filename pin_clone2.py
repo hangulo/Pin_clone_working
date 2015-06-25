@@ -32,6 +32,10 @@ def index():
 def search():
     return app.send_static_file("search_angular.html")\
 
+@app.route('/firebase')
+def firebase():
+    return app.send_static_file("firebase.html")\
+
 @app.route('/search2')
 @app.route('/search2/<default>')
 def search2b(default=''):
