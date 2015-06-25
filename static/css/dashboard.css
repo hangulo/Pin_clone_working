@@ -116,7 +116,31 @@ body {
     color: white;
 }
 
+.dashboard-count-blue {
+    background-color: blue;
+    width: 200px;
+    height: 200px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 100px;
+    font-size: 50px;
+    color: white;
+}
+
+.dashboard-count-slate {
+    background-color: darkslategray;
+    width: 200px;
+    height: 200px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 100px;
+    font-size: 50px;
+    color: white;
+}
+
 .dashboard-img{
-  padding-left:50px;
+  padding-left:5px;
 }
 

@@ -88,23 +88,24 @@
               <h4>Events Returned</h4>
               <span class="text-muted">You asked for {{ size }} events</span>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <a href="search#/facets"><img data-src="holder.js/200x200?text={{ facets_num }}&theme=social&size=50" class="img-responsive" alt="Generic placeholder thumbnail"></a>
+            <div class="col-xs-6 col-sm-3 dashboard-img">
+              <a href="search#/facets"><div class="dashboard-count-blue">{{ facets_num }}</div></a>
               <h4>Unique Fields</h4>
-              <span class="text-muted">Total # fields in results</span>
+              <span class="text-muted">Total # fields in results: {{ facets_num }}</span>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <a href="search#/full"><img data-src="holder.js/200x200?text={{ events_MB }}MB&theme=industrial&size=50" class="img-responsive" alt="Generic placeholder thumbnail"></a>
-              <h4>Events Size</h4>
-              <span class="text-muted">Payload size of all {{ events_num }} events</span>
-            </div>
-              <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200?theme=sky&text={{ total }}&size=50" class="img-responsive" alt="Generic placeholder thumbnail">
+              <div class="col-xs-6 col-sm-3 dashboard-img">
+                <a href="search#/"><div class="dashboard-count-slate">{{ total_events }}</div></a>
               <h4>Total Events</h4>
               <span class="text-muted">Total during this period</span>
             </div>
           </div>
 
+          <div>Other info we have...
+                  <ul>
+                    <li>datefrom: <b>{{ date_from | date:'medium'}}</b></li>
+                    <li>dateTo: <b>{{ date_to | date:'medium'}}</b></li>
+                  </ul>
+          </div>
 
         <div class="container">
 

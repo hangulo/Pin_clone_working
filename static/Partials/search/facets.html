@@ -1,6 +1,19 @@
 <div>
+    <h2 class="sub-header">List of Values for a Facet</h2>
+        <label>Check Values for <input ng-model="facet_to_filter"></label><br>
+        <button ng-click="facet_search()">View Values for this Facet</button>
+
+        <ui ng-repeat=""
+</div>
+
+
+
+<div>
     <h2 class="sub-header">List of Facets</h2>
     <ui ng-repeat="f in facets">
        <li class="list-group-item col-md-3">{{ f.name }}</li>
     </ui>
+
+
 </div>
+
