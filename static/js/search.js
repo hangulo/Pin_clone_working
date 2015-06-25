@@ -34,7 +34,7 @@ app.config(function($routeProvider) {
 app.controller('SearchController', function($scope, $http, $location){
     $scope.size = "10";
     $scope.query = "*";
-    $scope.facet_to_filter="syslog.host"
+    $scope.facet_to_filter="tag"
 
     $scope.facet_search = function () {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + "aGVjdG9yOmhlY3Rvcg==";
@@ -42,9 +42,10 @@ app.controller('SearchController', function($scope, $http, $location){
 
         $http.get("https://sample.loggly.com/apiv2/fields/"+$scope.facet_to_filter+"/?q=*&from=-10m&until=now&facet_size=2000")
                 .success(function (data) {
-                      console.log("So yeah...");
-                console.log(data);
+                    $scope.facet_values = data[$scope.facet_to_filter];
         });
+        console.log("test: facet_search for: "+$scope.facet_to_filter);
+
     };
 
     $scope.search= function () {
@@ -97,10 +98,15 @@ app.controller('SearchController', function($scope, $http, $location){
         return "";
     }
     };
+    $scope.logtest = function() {
+        console.log("test");
+        $scope.count = $scope.count + 1;
+    };
 
 
     $scope.currentPath = $location.path();
     $scope.name = "Hector";
     $scope.events_MB = "0";
+    $scope.count = 0;
 
 });

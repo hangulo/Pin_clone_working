@@ -144,3 +144,10 @@ body {
   padding-left:5px;
 }
 
+.width-fix{
+  width:80%;
+}
+.width-fix-small{
+  width:500px;
+}
+

@@ -1,19 +1,24 @@
 <div>
-    <h2 class="sub-header">List of Values for a Facet</h2>
-        <label>Check Values for <input ng-model="facet_to_filter"></label><br>
-        <button ng-click="facet_search()">View Values for this Facet</button>
-
-        <ui ng-repeat=""
+    <h2 class="sub-header">Loggly API Facet Info</h2>
+        <label>Check Values for <input ng-keyup="facet_search()"  ng-model="facet_to_filter"></label>
+<br>
 </div>
 
 
+<div class="width-fix">
+    <h2 class="sub-header">Top Values</h2>
+    <ui ng-repeat="f in facet_values">
+       <li>
+       <span class="badge">{{ f.count }}</span>
+       {{ f.term }}
+       </li>
+    </ui>
+</div>
 
-<div>
+<div class="width-fix">
     <h2 class="sub-header">List of Facets</h2>
     <ui ng-repeat="f in facets">
-       <li class="list-group-item col-md-3">{{ f.name }}</li>
+       <li class="list-group-item col-md-3">{{ f.name }} </li>
     </ui>
-
-
 </div>
 
